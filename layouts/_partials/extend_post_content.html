@@ -1,0 +1,8 @@
+{{ with .Params.paper_title }}
+<aside class="paper-reference" aria-label="论文信息">
+  <p><strong>{{ . }}</strong></p>
+  {{ with $.Params.paper_authors }}<p>{{ . }}</p>{{ end }}
+  {{ with $.Params.paper_venue }}<p>{{ . }}</p>{{ end }}
+  {{ with $.Params.paper_url }}<a href="{{ . }}">阅读原文</a>{{ end }}
+</aside>
+{{ end }}

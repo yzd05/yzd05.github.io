@@ -1,0 +1,68 @@
+baseURL = 'https://yzd05.github.io/'
+title = "yzd's notebook"
+locale = 'zh-CN'
+defaultContentLanguage = 'zh'
+hasCJKLanguage = true
+theme = 'PaperMod'
+enableRobotsTXT = true
+timeZone = 'Asia/Shanghai'
+summaryLength = 100
+disableKinds = ['taxonomy', 'term']
+
+[pagination]
+pagerSize = 10
+
+[outputs]
+home = ['HTML', 'RSS']
+
+[params]
+author = 'yzd'
+description = 'yzd 的个人笔记本。记录论文阅读、技术探索，以及从理解到实践的过程。'
+keywords = ['论文阅读', '技术笔记', '机器学习', '计算机科学']
+mainSections = ['posts']
+defaultTheme = 'light'
+disableThemeToggle = true
+ShowReadingTime = true
+ShowWordCount = false
+hideAuthor = true
+ShowToc = true
+TocOpen = false
+UseHugoToc = true
+ShowCodeCopyButtons = true
+ShowPostNavLinks = true
+ShowBreadCrumbs = false
+ShowRssButtonInSectionTermList = false
+disableSpecial1stPost = true
+hideSummary = false
+DateFormat = '2006.01.02'
+disableScrollToTop = true
+
+[params.label]
+text = "yzd's notebook"
+
+[params.assets]
+favicon = '/favicon.svg'
+theme_color = '#ffffff'
+msapplication_TileColor = '#ffffff'
+disableHLJS = true
+
+[[menu.main]]
+name = 'POST'
+url = '/'
+weight = 10
+
+[markup.highlight]
+noClasses = false
+lineNos = false
+codeFences = true
+
+[markup.goldmark.extensions.passthrough]
+enable = true
+[markup.goldmark.extensions.passthrough.delimiters]
+block = [['\[', '\]'], ['$$', '$$']]
+inline = [['\(', '\)'], ['$', '$']]
+
+[markup.tableOfContents]
+startLevel = 2
+endLevel = 3
+ordered = false

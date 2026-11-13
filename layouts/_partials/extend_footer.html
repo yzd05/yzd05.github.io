@@ -1,0 +1,8 @@
+<script>
+  document.querySelector('main').id = 'main-content';
+  const skipLink = document.createElement('a');
+  skipLink.className = 'skip-link';
+  skipLink.href = '#main-content';
+  skipLink.textContent = '跳转到正文';
+  document.body.prepend(skipLink);
+</script>

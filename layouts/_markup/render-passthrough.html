@@ -1,0 +1,6 @@
+{{- $opts := dict "displayMode" (eq .Type "block") "output" "mathml" -}}
+{{- with try (transform.ToMath .Inner $opts) -}}
+  {{- with .Err -}}
+    {{- errorf "数学公式渲染失败: %s (%s)" . $.Position -}}
+  {{- else -}}{{- .Value -}}{{- end -}}
+{{- end -}}
