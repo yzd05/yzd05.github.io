@@ -1,0 +1,3 @@
+{{ define "main" }}
+<div class="site-layout">{{ partial "blog-sidebar.html" . }}<main id="main-content" class="main-column"><h1 class="page-title">{{ .Title }}</h1><p class="muted">{{ len .Pages }} 篇文章</p>{{ range .Pages.ByDate.Reverse }}{{ partial "blog-entry.html" . }}{{ end }}</main></div>
+{{ end }}

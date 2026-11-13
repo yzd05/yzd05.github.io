@@ -1,5 +1,7 @@
 ---
 title: 论文阅读笔记 | HybridFlow：面向边云协同大模型推理的资源自适应子任务路由
+categories: [论文阅读]
+paper_title: "HybridFlow: Resource-Adaptive Subtask Routing for Efficient Edge-Cloud LLM Inference"
 date: 2026-10-24
 description: "把一个查询拆成带依赖的子任务 DAG，互不依赖的子任务并行执行；每个子任务用 MLP 预测“上云的性价比”，与一个随资源消耗不断上涨的阈值比较，高于阈值才交给云端大模型，否则留在边缘小模型上执行。在四个推理基准上，正确率接近全云端，时延和费用大幅下降。"
 tags: [边缘智能, 边云协同, LLM 推理]

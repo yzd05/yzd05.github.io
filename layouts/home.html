@@ -1,22 +1,7 @@
 {{ define "main" }}
-{{ $posts := where site.RegularPages "Type" "in" site.Params.mainSections }}
-{{ $paginator := .Paginate $posts.ByDate.Reverse }}
-<section class="notebook-posts" aria-label="文章">
-  {{ range $paginator.Pages }}
-  <article class="notebook-entry">
-    <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
-    <p class="notebook-summary">{{ .Description | default (.Summary | plainify) }}</p>
-    <div class="entry-footer">{{ partial "post_meta.html" . }}</div>
-  </article>
-  {{ else }}
-  <p class="empty-notes">暂无文章。</p>
-  {{ end }}
-</section>
-{{ if gt $paginator.TotalPages 1 }}
-<nav class="notebook-pagination" aria-label="分页">
-  {{ with $paginator.Prev }}<a href="{{ .URL }}">上一页</a>{{ end }}
-  <span>{{ $paginator.PageNumber }} / {{ $paginator.TotalPages }}</span>
-  {{ with $paginator.Next }}<a href="{{ .URL }}">下一页</a>{{ end }}
-</nav>
-{{ end }}
+<div class="site-layout">{{ partial "blog-sidebar.html" . }}<main id="main-content" class="main-column" aria-label="文章">
+{{ $paginator := .Paginate ((where site.RegularPages "Type" "posts").ByDate.Reverse) }}
+{{ range $paginator.Pages }}{{ partial "blog-entry.html" . }}{{ end }}
+{{ if gt $paginator.TotalPages 1 }}<nav class="pagination" aria-label="分页">{{ with $paginator.Prev }}<a href="{{ .URL }}">上一页</a>{{ end }}<span>{{ $paginator.PageNumber }} / {{ $paginator.TotalPages }}</span>{{ with $paginator.Next }}<a href="{{ .URL }}">下一页</a>{{ end }}</nav>{{ end }}
+</main></div>
 {{ end }}

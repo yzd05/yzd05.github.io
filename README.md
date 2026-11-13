@@ -1,4 +1,4 @@
-# yzd's notebook
+# yzd 的博客
 
 记录边缘智能、端云协同与大模型系统方向的论文阅读和技术思考。
 
@@ -19,7 +19,7 @@
 
 ## 站点实现
 
-使用 [Hugo](https://gohugo.io/) 与 [PaperMod](https://github.com/adityatelange/hugo-PaperMod/) 构建，由 GitHub Pages 托管。页面采用白底单栏布局，支持移动端阅读、文章目录、代码高亮与复制；公式在构建时转换为 MathML，无需加载外部公式渲染服务。
+使用 [Hugo](https://gohugo.io/) 与 [PaperMod](https://github.com/adityatelange/hugo-PaperMod/) 构建，由 GitHub Pages 托管。页面采用白底双栏布局，提供全文搜索、归档、标签、分类、关于页，以及随阅读位置高亮的侧栏目录。支持移动端导航、阅读字号与护眼背景设置、代码高亮与复制；公式在构建时转换为 MathML，无需加载外部公式渲染服务。
 
 文章和配图保存在同一个目录中，便于直接阅读源码与维护内容：
 
@@ -27,6 +27,8 @@
 content/posts/          文章与配图
 archetypes/paper.md     论文阅读笔记模板
 assets/css/            站点样式
+assets/js/blog.js      搜索、目录高亮与阅读设置
+static/images/         头像等站点图片
 layouts/               页面布局与公式渲染扩展
 themes/PaperMod/        主题源码及许可证
 hugo.toml              站点配置

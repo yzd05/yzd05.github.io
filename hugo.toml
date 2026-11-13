@@ -1,5 +1,5 @@
 baseURL = 'https://yzd05.github.io/'
-title = "yzd's notebook"
+title = "yzd 的博客"
 locale = 'zh-CN'
 defaultContentLanguage = 'zh'
 hasCJKLanguage = true
@@ -7,13 +7,15 @@ theme = 'PaperMod'
 enableRobotsTXT = true
 timeZone = 'Asia/Shanghai'
 summaryLength = 100
-disableKinds = ['taxonomy', 'term']
+[taxonomies]
+tag = 'tags'
+category = 'categories'
 
 [pagination]
 pagerSize = 10
 
 [outputs]
-home = ['HTML', 'RSS']
+home = ['HTML', 'RSS', 'JSON']
 
 [params]
 author = 'yzd'
@@ -47,9 +49,30 @@ msapplication_TileColor = '#ffffff'
 disableHLJS = true
 
 [[menu.main]]
-name = 'POST'
+name = '首页'
 url = '/'
 weight = 10
+
+[[menu.main]]
+name = '归档'
+url = '/archives/'
+weight = 20
+
+[[menu.main]]
+name = '标签'
+url = '/tags/'
+weight = 30
+
+[[menu.main]]
+name = '分类'
+url = '/categories/'
+weight = 40
+
+[[menu.main]]
+name = '关于'
+url = '/about/'
+weight = 50
+
 
 [markup.highlight]
 noClasses = false

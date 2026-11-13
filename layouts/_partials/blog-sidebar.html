@@ -1,0 +1,13 @@
+<aside class="site-sidebar{{ if eq .Type "posts" }} post-sidebar{{ end }}">
+{{ if and (eq .Kind "page") (eq .Type "posts") }}
+<div class="toc-sticky"><p class="sidebar-label">目录</p><a class="toc-paper-title" href="#article-start">{{ .Params.paper_title | default (.Params.paper_short | default .Title) }}</a><nav class="article-toc" aria-label="文章目录">{{ .TableOfContents }}</nav></div>
+{{ else }}
+<div class="profile-sticky">
+<a href="{{ "/about/" | relURL }}" aria-label="关于 yzd"><img class="profile-avatar" src="{{ "images/avatar.jpg" | relURL }}" alt="yzd 的头像" width="64" height="64"></a>
+<h2 class="profile-name"><a href="{{ "/about/" | relURL }}">yzd</a></h2>
+<nav class="site-stats" aria-label="站点统计"><a href="{{ "/archives/" | relURL }}"><span>文章</span><strong>{{ len (where site.RegularPages "Type" "posts") }}</strong></a><a href="{{ "/tags/" | relURL }}"><span>标签</span><strong>{{ len site.Taxonomies.tags }}</strong></a><a href="{{ "/categories/" | relURL }}"><span>分类</span><strong>{{ len site.Taxonomies.categories }}</strong></a></nav>
+<section class="sidebar-section"><h3 class="sidebar-label">分类</h3>{{ range site.Taxonomies.categories.Alphabetical }}<a class="sidebar-category" href="{{ .Page.RelPermalink }}"><span>{{ .Page.LinkTitle }}</span><span>{{ .Count }}</span></a>{{ end }}</section>
+<section class="sidebar-section"><h3 class="sidebar-label">标签</h3><div class="sidebar-tags">{{ range site.Taxonomies.tags.Alphabetical }}<a href="{{ .Page.RelPermalink }}">#{{ .Page.LinkTitle }}</a>{{ end }}</div></section>
+</div>
+{{ end }}
+</aside>

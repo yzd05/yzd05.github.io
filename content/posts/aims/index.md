@@ -1,5 +1,7 @@
 ---
 title: 论文阅读笔记 | AIMS：感知轨迹依赖的端云智能体子任务路由
+categories: [论文阅读]
+paper_title: "AIMS: Cost-Efficient LLM-Based Agent Deployment in Hybrid Cloud-Edge Environments"
 date: 2026-11-13
 description: "智能体用哪个模型执行当前步骤，会改变后面的任务轨迹。AIMS 用离线画像训练小型预测器，通过位置感知、收敛检测和任务分解，在保留较高准确率的同时减少云端大模型调用。"
 tags: [边缘智能, 边云协同, LLM 智能体]
