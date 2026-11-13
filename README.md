@@ -1,72 +1,54 @@
 # yzd's notebook
 
-用于论文阅读与技术笔记的 Hugo 博客。基于 PaperMod，参考 Lil’Log 的内容结构：纯白背景、单栏正文、标题和摘要组成的文章列表。主题本身保持原样。
+记录边缘智能、端云协同与大模型系统方向的论文阅读和技术思考。
 
-## 本地预览
+**[访问博客 →](https://yzd05.github.io/)**
 
-需要 **Hugo Extended 0.168.0**（PaperMod 当前至少需要 0.158.0）。
+## 阅读内容
 
-```powershell
+关注模型如何在有限的算力、时延和费用下完成任务，以及这些约束如何影响智能体的规划、路由和执行。
+
+| 阅读笔记 | 关注的问题 |
+|---|---|
+| [AIMS · EuroSys 2026](https://yzd05.github.io/posts/aims/) | 模型选择如何改变智能体的后续轨迹？能否通过收敛预测和任务分解减少云端调用？ |
+| [HybridFlow · ICML 2026](https://yzd05.github.io/posts/hybridflow/) | 如何把查询拆成可并行的子任务，并在资源预算内决定哪些步骤上云？ |
+
+论文笔记采用统一的九节结构：问题与动机、核心思路、方法细节、实验、我的理解与疑问、相关工作、可探索方向、术语速查和引用。除了整理方法与关键公式，也会记录实验口径、实现歧义和仍需验证的问题，便于对照阅读不同工作。
+
+笔记中的论文结论、个人推导与推测会分别说明；实验数字尽量注明对应的章节、图表和版本。欢迎通过 [Issues](https://github.com/yzd05/yzd05.github.io/issues) 交流或指出错误。
+
+## 站点实现
+
+使用 [Hugo](https://gohugo.io/) 与 [PaperMod](https://github.com/adityatelange/hugo-PaperMod/) 构建，由 GitHub Pages 托管。页面采用白底单栏布局，支持移动端阅读、文章目录、代码高亮与复制；公式在构建时转换为 MathML，无需加载外部公式渲染服务。
+
+文章和配图保存在同一个目录中，便于直接阅读源码与维护内容：
+
+```text
+content/posts/          文章与配图
+archetypes/paper.md     论文阅读笔记模板
+assets/css/            站点样式
+layouts/               页面布局与公式渲染扩展
+themes/PaperMod/        主题源码及许可证
+hugo.toml              站点配置
+.github/workflows/     自动构建与部署
+```
+
+## 本地运行
+
+安装 **Hugo Extended 0.168.0**（与部署环境一致），然后运行：
+
+```sh
+git clone https://github.com/yzd05/yzd05.github.io.git
+cd yzd05.github.io
 hugo server -D
 ```
 
-本机也可使用下载到工作区的 Hugo：
+主题源码已包含在仓库内。新建论文笔记可使用 `hugo new content --kind paper posts/my-paper/index.md`；完成后将文章的 `draft` 设为 `false`，并检查发布日期。
 
-```powershell
-& D:\blog\.tools\hugo\hugo.exe server -D
-```
+正式构建使用 `hugo --gc --minify --panicOnWarning`，输出到 `public/`。推送至 `main` 后，GitHub Actions 自动构建并部署。
 
-## 写文章
+## 引用与许可
 
-```powershell
-hugo new content posts/my-post/index.md
-```
+论文和图表的出处、许可及修改说明见对应文章。引用相关研究时，请优先引用原论文。
 
-写论文阅读时，可使用你的九节笔记模板：
-
-```powershell
-hugo new content --kind paper posts/my-paper/index.md
-```
-
-模板保存在 `archetypes/paper.md`，新建文章默认是草稿，发布前需替换占位内容。
-
-论文阅读和技术笔记统一放在 `content/posts/`，不分类。图片与 `index.md` 放在同一个目录，通过 `![说明](figure.png)` 引用。填写标题、description；写完后把 `draft = true` 改成 `false`。日期必须不晚于实际发布日期，未来日期文章默认不发布。
-
-需要附加论文信息时，可选填写 `paper_title`、`paper_url`、`paper_authors`、`paper_venue`，在正文上方显示。
-
-## 公式和代码
-
-行内公式写成 `$E=mc^2$`，独立公式用 `$$` 包围。也支持 `\( ... \)` 和 `\[ ... \]`。公式在构建时转换为 MathML，无需访问外部公式 CDN；建议使用现代浏览器。正文中的货币美元符号需要转义成 `\$`。
-
-代码块标注语言，例如 ` ```python `，即可显示语法高亮与复制按钮。二、三级 Markdown 标题自动生成文章目录。
-
-## 构建
-
-```powershell
-hugo --gc --minify --panicOnWarning
-```
-
-发布目录为 `public/`。首页仅显示 POST 文章列表，不包含搜索、关于或分类页。草稿不会出现在正式网站。
-
-## 发布到 GitHub Pages
-
-仓库使用 `yzd05/yzd05.github.io`。将本项目的源码放到 `main` 分支，在 GitHub 的 Settings → Pages 中将 Source 设为 **GitHub Actions**。之后推送 `main` 时会自动构建并部署，网址仍为 `https://yzd05.github.io/`。
-
-工作流位于 `.github/workflows/hugo.yml`，固定 Hugo 版本为 0.168.0，主题以完整源码随站点保存，版本为 969bebdc5600a1639158b5ef4eff9cf6cbb511ac，保留上游 MIT 许可证。旧账号工程保留在 D:\blog\yzd-blog；新工程不会覆盖旧站。
-
-## 项目结构
-
-- `content/posts/`：全部文章
-- `archetypes/`：写作模板，默认创建草稿
-- `assets/css/extended/notebook.css`：个人样式
-- `layouts/`：首页、空状态、公式与论文元数据扩展
-- `themes/PaperMod/`：固定版本的上游主题（随站点保存的主题源码）
-
-旧站和原有 24 篇文章单独保存在 `D:\blog\backups\`，不参与新站构建。
-
-主题采用 [PaperMod](https://github.com/adityatelange/hugo-PaperMod/)（MIT）。
-
-
-## 本次迁移
-
-2026-11-13：由原站工程迁移到 `yzd05.github.io`，保留 HybridFlow 阅读笔记并新增 AIMS 阅读笔记。原 Hexo 历史备份继续保存在原目录，不包含在本仓库中。
+PaperMod 主题采用 [MIT 许可证](themes/PaperMod/LICENSE)。
